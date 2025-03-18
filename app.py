@@ -11,23 +11,33 @@ from functools import wraps
 from dotenv import load_dotenv
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+<<<<<<< HEAD
 from flask_cors import CORS
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 
 # Flask uygulamasını başlatıyoruz
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'my_super_secret_key_123456')  # .env dosyasından alınabilir
 
+<<<<<<< HEAD
 CORS(app)
 # Kara liste (blacklist) ve kullanım sayısı için sözlükler
 token_blacklist = set()
 token_usage = {}
 MAX_TOKEN_USAGE = 5  # Bir token'ın maksimum kullanım sayısı
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 # Rate limiter ekliyoruz - istemci IP adresine göre limitleme
 limiter = Limiter(
     get_remote_address,
     app=app,
+<<<<<<< HEAD
     default_limits=["5 per hour"],  # Varsayılan olarak saatte 5 istek
+=======
+    default_limits=["5 per minute"],  # Varsayılan olarak dakikada 5 istek
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
     storage_uri="memory://",  # Bellek tabanlı depolama (production için Redis önerilir)
 )
 
@@ -92,6 +102,7 @@ class JWTHandler:
             if not token:
                 return jsonify({'message': 'Token is missing!'}), 403
 
+<<<<<<< HEAD
             # Kara liste kontrolü
             if token in token_blacklist:
                 return jsonify({'message': 'Token is invalid or has been used!'}), 401
@@ -104,6 +115,8 @@ class JWTHandler:
             else:
                 token_usage[token] = 0  # İlk kez kullanılıyorsa sayaç başlat
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
             try:
                 # Token'ı decode et
                 data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
@@ -114,6 +127,7 @@ class JWTHandler:
             except jwt.InvalidTokenError:
                 return jsonify({'message': 'Invalid token!'}), 401
 
+<<<<<<< HEAD
             # Token kullanım sayısını artır
             token_usage[token] += 1
 
@@ -121,6 +135,8 @@ class JWTHandler:
             if token_usage[token] >= MAX_TOKEN_USAGE:
                 token_blacklist.add(token)
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
             return f(current_user_id, current_user_role, *args, **kwargs)
 
         return decorated_function
@@ -461,13 +477,21 @@ wsgi_app = WsgiApplication(soap_app)
 
 # Kullanıcı kaydı için endpoint
 @app.route('/register', methods=['POST'])
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def register():
     return UserHandler.register()
 
 # Kullanıcı giriş işlemi (Şifreyi Hash ile Karşılaştırarak)
 @app.route('/login', methods=['POST'])
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def login():
     return UserHandler.login()
 
@@ -478,7 +502,11 @@ def home():
 
 @app.route('/profile', methods=['GET'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def profile(current_user_id, current_user_role):
     # Eğer rol admin ise, diğer kullanıcıların bilgilerini de görebilir
     if current_user_role == 'admin':
@@ -496,7 +524,11 @@ def profile(current_user_id, current_user_role):
 
 @app.route('/user_data', methods=['GET'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def user_data(current_user_id, current_user_role):
     connection = DatabaseHandler.get_db_connection()
     cursor = connection.cursor()
@@ -532,7 +564,11 @@ def user_data(current_user_id, current_user_role):
 
 @app.route('/validate_token', methods=['GET'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def validate_token(current_user_id, current_user_role):
     return jsonify({
         'message': 'Token is valid!',
@@ -547,8 +583,14 @@ def check_permission(role, required_roles):
 #event güncelleme
 @app.route('/events/<int:event_id>', methods=['PUT'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
 def update_event(current_user_id, current_user_role, event_id):
+=======
+@limiter.limit("5 per minute")
+def update_event(current_user_id, current_user_role, event_id):
+    # Yetkilendirme kontrolü
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
     if not check_permission(current_user_role, ['Admin', 'Organizer']):
         return jsonify({'message': 'Unauthorized access'}), 403
 
@@ -557,7 +599,13 @@ def update_event(current_user_id, current_user_role, event_id):
     cursor = connection.cursor()
 
     try:
+<<<<<<< HEAD
         if current_user_role == 'Organizer':
+=======
+        # Eğer Organizer ise, sadece kendi etkinliklerini güncelleyebilir
+        if current_user_role == 'Organizer':
+            # Önce etkinliğin sahibini kontrol et
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
             cursor.execute("""
                 SELECT created_by 
                 FROM EVENT_MANAGEMENT.Events 
@@ -568,6 +616,10 @@ def update_event(current_user_id, current_user_role, event_id):
             if not event_owner or event_owner[0] != current_user_id:
                 return jsonify({'message': 'You can only update your own events'}), 403
 
+<<<<<<< HEAD
+=======
+        # Etkinliği güncelle
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
         cursor.execute("""
             UPDATE EVENT_MANAGEMENT.Events 
             SET name = :name,
@@ -588,8 +640,11 @@ def update_event(current_user_id, current_user_role, event_id):
         })
 
         connection.commit()
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
         return jsonify({'message': 'Event updated successfully'})
 
     except cx_Oracle.DatabaseError as e:
@@ -601,7 +656,11 @@ def update_event(current_user_id, current_user_role, event_id):
 #event silme
 @app.route('/events/<int:event_id>', methods=['DELETE'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def delete_event(current_user_id, current_user_role, event_id):
     if not check_permission(current_user_role, ['Admin', 'Organizer']):
         return jsonify({'message': 'Unauthorized access'}), 403
@@ -628,9 +687,12 @@ def delete_event(current_user_id, current_user_role, event_id):
         """, {'event_id': event_id})
 
         connection.commit()
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
         return jsonify({'message': 'Event deleted successfully'})
 
     except cx_Oracle.DatabaseError as e:
@@ -642,7 +704,11 @@ def delete_event(current_user_id, current_user_role, event_id):
 # Tüm etkinlikleri görüntüleme endpoint'i
 @app.route('/events', methods=['GET'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def get_events(current_user_id, current_user_role):
     connection = None
     cursor = None
@@ -729,8 +795,11 @@ def get_events(current_user_id, current_user_role):
 
             events.append(event)
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
         return jsonify(events), 200
 
     except cx_Oracle.DatabaseError as e:
@@ -755,7 +824,11 @@ def get_events(current_user_id, current_user_role):
 # Yeni etkinlik oluşturma endpoint'i
 @app.route('/events', methods=['POST'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def create_event(current_user_id, current_user_role):
     if not check_permission(current_user_role, ['Admin', 'Organizer']):
         return jsonify({'message': 'Unauthorized'}), 403
@@ -789,9 +862,12 @@ def create_event(current_user_id, current_user_role):
         event_id = event_id_var.getvalue()[0]
         connection.commit()
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
         return jsonify({'message': 'Event created successfully', 'event_id': event_id}), 201
 
     except cx_Oracle.DatabaseError as e:
@@ -803,7 +879,11 @@ def create_event(current_user_id, current_user_role):
 # Bilet satın alma endpoint'i
 @app.route('/tickets/purchase', methods=['POST'])
 @JWTHandler.token_required
+<<<<<<< HEAD
 @limiter.limit("5 per hour")
+=======
+@limiter.limit("5 per minute")
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
 def purchase_ticket(current_user_id, current_user_role):
     if not check_permission(current_user_role, ['User', 'Admin']):
         return jsonify({'message': 'Unauthorized'}), 403
@@ -859,9 +939,12 @@ def purchase_ticket(current_user_id, current_user_role):
         })
 
         connection.commit()
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
         return jsonify({
             'message': 'Ticket purchased successfully',
             'ticket_id': ticket_id,

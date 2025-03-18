@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Management System</title>
   <link rel="stylesheet" href="style.css">
@@ -47,3 +48,37 @@
   <script src="script.js"></script>
 </body>
 </html>
+=======
+  <title>Event Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Event Management System</h1>
+
+  <!-- Kayıt Formu -->
+  <h2>Register</h2>
+  <input type="text" id="reg_username" placeholder="Username">
+  <input type="email" id="reg_email" placeholder="Email">
+  <input type="password" id="reg_password" placeholder="Password">
+  <button onclick="register()">Register</button>
+
+  <!-- Giriş Formu -->
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+
+  <!-- Profil Bilgileri -->
+  <h2>Profile</h2>
+  <button onclick="fetchProfile()">Get Profile Info</button>
+  <div id="profile"></div>
+
+  <!-- Etkinlik Listesi -->
+  <h2>Event List</h2>
+  <button onclick="fetchEvents()">Get Events</button>
+  <ul id="eventList"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
+>>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5

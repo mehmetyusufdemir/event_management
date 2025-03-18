@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5004:5004"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - my_network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

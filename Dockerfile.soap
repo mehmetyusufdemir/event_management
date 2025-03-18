@@ -1,0 +1,20 @@
+# Python 3.10 imajını kullanıyoruz
+FROM python:3.10.5
+
+# Çalışma dizinini belirliyoruz
+WORKDIR /app
+
+# Gereksinimleri kopyalıyoruz
+COPY requirements.txt /app/
+
+# Bağımlılıkları yüklüyoruz
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY soap.app.py /app/soap_app.py
+
+
+# Flask uygulamanızı başlatmak için gerekli komut
+CMD ["python", "soap_app.py"]
+
+# API'nin çalışacağı portu belirliyoruz
+EXPOSE 5005

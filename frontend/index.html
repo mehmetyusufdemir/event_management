@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Event Management System</h1>
+
+    <!-- Kayıt Formu -->
+    <div class="form-section">
+      <h2>Register</h2>
+      <input type="text" id="reg_username" placeholder="Username">
+      <input type="email" id="reg_email" placeholder="Email">
+      <input type="password" id="reg_password" placeholder="Password">
+      <button onclick="register()">Register</button>
+      <p id="registerMessage"></p>
+    </div>
+
+    <!-- Giriş Formu -->
+    <div class="form-section">
+      <h2>Login</h2>
+      <input type="text" id="login_username" placeholder="Username">
+      <input type="password" id="login_password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p id="loginMessage"></p>
+    </div>
+
+    <!-- Profil Bilgileri -->
+    <div class="form-section">
+      <h2>Profile</h2>
+      <button onclick="fetchProfile()">Get Profile Info</button>
+      <div id="profile"></div>
+    </div>
+
+    <!-- Etkinlik Listesi -->
+    <div class="form-section">
+      <h2>Event List</h2>
+      <button onclick="fetchEvents()">Get Events</button>
+      <ul id="eventList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

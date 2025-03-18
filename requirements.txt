@@ -1,0 +1,6 @@
+Flask
+cx_Oracle
+pyjwt
+dotenv
+flask_limiter
+zeep

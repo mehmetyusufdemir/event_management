@@ -1,0 +1,15 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+}

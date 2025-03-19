@@ -4,3 +4,6 @@ pyjwt
 dotenv
 flask_limiter
 zeep
+langchain-community
+langchain-openai
+python-dotenv

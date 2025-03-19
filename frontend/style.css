@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-<<<<<<< HEAD
+
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
@@ -57,7 +57,7 @@ button:hover {
   color: red;
   margin-top: 10px;
 }
-=======
+
 }
 
 input {
@@ -71,4 +71,4 @@ button {
 ul {
   list-style-type: none;
 }
->>>>>>> 377f31e7ee60d20dd41dd79ba7ebf58e69ec96a5
+

@@ -1089,7 +1089,7 @@ def purchase_ticket(current_user_id, current_user_role):
 def soap_service():
     return wsgi_app
 
-API_URL = "http://172.20.10.3:5004"
+API_URL = "http://192.168.1.15:5004"
 
 # LangChain handler'ı bir kez başlat
 langchain_handler = LangChainHandler()

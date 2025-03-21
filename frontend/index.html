@@ -5,46 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Management System</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1>Event Management System</h1>
 
     <!-- Kayıt Formu -->
-    <div class="form-section">
+    <div class="form-section card">
       <h2>Register</h2>
       <input type="text" id="reg_username" placeholder="Username">
       <input type="email" id="reg_email" placeholder="Email">
       <input type="password" id="reg_password" placeholder="Password">
-      <button onclick="register()">Register</button>
-      <p id="registerMessage"></p>
+      <button onclick="register()" class="btn-primary">Register</button>
+      <p id="registerMessage" class="message"></p>
     </div>
 
     <!-- Giriş Formu -->
-    <div class="form-section">
+    <div class="form-section card">
       <h2>Login</h2>
       <input type="text" id="login_username" placeholder="Username">
       <input type="password" id="login_password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <p id="loginMessage"></p>
+      <button onclick="login()" class="btn-primary">Login</button>
+      <p id="loginMessage" class="message"></p>
     </div>
 
     <!-- Profil Bilgileri -->
-    <div class="form-section">
+    <div class="form-section card">
       <h2>Profile</h2>
-      <button onclick="fetchProfile()">Get Profile Info</button>
-      <div id="profile"></div>
+      <button onclick="fetchProfile()" class="btn-secondary">Get Profile Info</button>
+      <div id="profile" class="profile-info"></div>
     </div>
 
     <!-- Etkinlik Listesi -->
-    <div class="form-section">
+    <div class="form-section card">
       <h2>Event List</h2>
-      <button onclick="fetchEvents()">Get Events</button>
-      <ul id="eventList"></ul>
+      <button onclick="fetchEvents()" class="btn-secondary">Get Events</button>
+      <ul id="eventList" class="event-list"></ul>
     </div>
 
     <!-- Chatbot Bölümü -->
-    <div class="form-section" id="chatbot-section">
+    <div class="form-section card" id="chatbot-section">
       <h2>AI Assistant</h2>
       <p class="chat-info">Etkinlikler hakkında sorular sorabilirsiniz. Örneğin:</p>
       <ul class="chat-example-list">
@@ -55,9 +56,9 @@
       <div id="chat-messages" class="chat-container"></div>
       <div class="chat-input-container">
         <input type="text" id="chat-input" placeholder="Sorgunuzu yazın...">
-        <button onclick="sendChatMessage()">Gönder</button>
+        <button onclick="sendChatMessage()" class="btn-primary">Gönder</button>
       </div>
-      <p id="chatMessage"></p>
+      <p id="chatMessage" class="message"></p>
     </div>
   </div>
 

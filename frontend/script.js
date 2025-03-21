@@ -1,5 +1,5 @@
 let token = null;
-const API_URL = "http://172.20.10.3:5004";  // Doğru IP adresini buraya gir
+const API_URL = "http://192.168.1.15:5004";  // Doğru IP adresini buraya gir
 
 // Sayfa yüklendiğinde chatbot bölümünü gizle
 document.addEventListener('DOMContentLoaded', function() {
@@ -255,4 +255,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-

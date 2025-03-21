@@ -1,13 +1,13 @@
 body {
   font-family: Arial, sans-serif;
-
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px 0;
 }
 
 .container {
@@ -53,11 +53,9 @@ button:hover {
   text-align: left;
 }
 
-#registerMessage, #loginMessage {
+#registerMessage, #loginMessage, #chatMessage {
   color: red;
   margin-top: 10px;
-}
-
 }
 
 input {
@@ -70,5 +68,78 @@ button {
 
 ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
+/* Chatbot Stilleri */
+.chat-container {
+  height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-container input {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.chat-input-container button {
+  margin-bottom: 0;
+  width: 80px;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.bot-message {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+#chatbot-section {
+  display: none;
+}
+
+.chat-info {
+  text-align: left;
+  margin-bottom: 5px;
+  color: #666;
+  font-size: 14px;
+}
+
+.chat-example-list {
+  text-align: left;
+  margin: 0 0 10px 0;
+  padding-left: 20px;
+  color: #666;
+  font-size: 13px;
+  list-style-type: disc;
+}
+
+.chat-example-list li {
+  margin-bottom: 2px;
+}

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Management System</title>
   <link rel="stylesheet" href="style.css">
@@ -43,9 +42,25 @@
       <button onclick="fetchEvents()">Get Events</button>
       <ul id="eventList"></ul>
     </div>
+
+    <!-- Chatbot Bölümü -->
+    <div class="form-section" id="chatbot-section">
+      <h2>AI Assistant</h2>
+      <p class="chat-info">Etkinlikler hakkında sorular sorabilirsiniz. Örneğin:</p>
+      <ul class="chat-example-list">
+        <li>En popüler etkinlik hangisi?</li>
+        <li>Önümüzdeki hafta hangi etkinlikler var?</li>
+        <li>En ucuz etkinlik hangisi?</li>
+      </ul>
+      <div id="chat-messages" class="chat-container"></div>
+      <div class="chat-input-container">
+        <input type="text" id="chat-input" placeholder="Sorgunuzu yazın...">
+        <button onclick="sendChatMessage()">Gönder</button>
+      </div>
+      <p id="chatMessage"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
